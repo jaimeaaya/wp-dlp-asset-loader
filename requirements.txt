@@ -1,0 +1,5 @@
+openpyxl>=3.1
+pymysql>=1.1
+paramiko>=2.11,<4.0
+sshtunnel>=0.4
+python-dotenv>=1.0
