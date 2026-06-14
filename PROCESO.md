@@ -1,5 +1,26 @@
 # Proceso de cargue CYD Assets — Detalle técnico
 
+## Macro VBA — ConsolidarHojas
+
+El Excel tiene una hoja por marca (Hero, TheraBreath, Batiste, etc.). La macro genera la hoja **Consolidado** que usan todos los scripts Python.
+
+**Archivo**: `macro/ConsolidarHojas.bas` en el repo `wp-dlp-asset-loader`
+
+**Qué hace**:
+1. Limpia la hoja Consolidado (mantiene cabecera)
+2. Recorre todas las hojas salvo `Consolidado` y `CRONOGRAMA`
+3. Copia columnas B–K de cada hoja fuente
+4. Agrega el nombre de la hoja en columna K (`Hoja`) — así `diagnostico_assets.py` sabe el idioma y la marca
+
+**Estructura columnas por hoja fuente**:
+- A: UBICACION EN DB (ignorada) | B: NOMBRE | C: CATEGORIA | D: SUBCATEGORIA | E: DESCRIPCION | F: FORMATO | G: IMAGEN PRINCIPAL (Dropbox) | H: PREVIEW CONTENIDOS (Dropbox) | I: EDITABLES | J: PIEZAS | K: CONSOLIDADO (Amplify URL)
+
+**Columna K "Hoja" en Consolidado** es clave: `diagnostico_assets.py` determina idioma por si el nombre de hoja contiene "English" o no. Si el nombre de hoja fuente cambia, revisar `SKIP_HOJAS` y el mapeo en `leer_consolidado()`.
+
+**Ejecutar**: `Alt+F8 > ConsolidarHojas > Ejecutar`. El archivo debe estar guardado como `.xlsm`.
+
+---
+
 ## Archivos del proyecto
 
 | Archivo | Rol |
