@@ -87,6 +87,23 @@ Señal de alerta: en el log del cargue, si `Pares vinculados: 0` pero había doc
 
 Cuando el tunnel SSH muere (InterfaceError/OperationalError), `run_batch` detecta el error, llama `open_connections()` para recrear tunnel+conn+ssh y reintenta el documento fallido una vez.
 
+## Formato de descripción (post_excerpt)
+
+El campo `post_excerpt` almacena la descripción visible en el tab "Descripción" del single.
+
+**Formato**: `{descripcion}<h5>Archivos:</h5>{formato}`
+
+- `descripcion` = texto **literal** de la columna D (DESCRIPCION) del Excel Consolidado. No generar ni modificar.
+- `formato` = texto de columna E (FORMATO), ej: `PNG`, `JPG`, `TIFF`
+- El tab usa `<div class="dlp-excerpt">` (no `<p>`) para permitir `<h5>` como block element válido
+
+**Si las descripciones en DB son incorrectas** (AI-generadas o desincronizadas con el Excel):
+```
+python reparar_descripciones.py             # preview de cambios
+python reparar_descripciones.py --aplicar   # aplica a todos los docs
+python reparar_descripciones.py --solo hero # solo una marca
+```
+
 ## Agrupación de documentos (diagnostico)
 
 La clave de agrupación es la **URL de Amplify del campo CONSOLIDADO**. Dentro de cada grupo:
