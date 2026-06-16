@@ -131,7 +131,7 @@ def build_excerpt(descripcion, formato):
         return ''
     if not fmt:
         return desc
-    return f"{desc}\r\n<br><br>\r\n<b>Archivos:</b><br>\r\n{fmt}"
+    return f"{desc}<br><br>Archivos:<br>{fmt}"
 
 # ── SSH / WP-CLI ──────────────────────────────────────────────────────────────
 def open_ssh():
