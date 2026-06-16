@@ -57,7 +57,7 @@ def build_excerpt(descripcion, formato):
         return ''
     if not fmt:
         return desc
-    return f"{desc}<br><br>Archivos:<br>{fmt}"
+    return f"{desc}<h5>Archivos:</h5>{fmt}"
 
 
 def leer_consolidado(path):
